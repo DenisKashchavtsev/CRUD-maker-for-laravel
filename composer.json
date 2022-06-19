@@ -1,0 +1,18 @@
+{
+    "name": "dkart/crud-maker",
+    "description": "crud maker for laravel",
+    "type": "library",
+    "license": "GNU General Public License",
+    "autoload": {
+        "psr-4": {
+            "Dkart\\CrudMaker\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kashchavtsev Denis"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
