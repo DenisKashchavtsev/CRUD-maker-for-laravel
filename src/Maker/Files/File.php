@@ -1,8 +1,8 @@
 <?php
 
-namespace DKart\CrudMaker\Builder\Builders;
+namespace DKart\CrudMaker\Maker\Files;
 
-abstract class Builder
+abstract class File
 {
     /**
      * @var string
@@ -34,7 +34,7 @@ abstract class Builder
     }
 
     /**
-     *  Load controller template
+     * @return bool|string
      */
     protected function loadTemplate(): bool|string
     {
@@ -42,11 +42,11 @@ abstract class Builder
     }
 
     /**
-     *  Publish file into it's place
+     * @param $template
+     * @return void
      */
     protected function publish($template): void
     {
-        dump(base_path($this->patch));
         if (! file_exists(base_path($this->patch))) {
             mkdir(base_path($this->patch));
             chmod(base_path($this->patch), 0777);

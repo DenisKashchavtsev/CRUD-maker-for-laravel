@@ -1,27 +1,28 @@
 <?php
 
-namespace DKart\CrudMaker\Builder;
+namespace DKart\CrudMaker\Maker;
 
+use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
 use Illuminate\Support\Facades\App;
 
-class Builder
+class Maker
 {
     /**
-     * Build our files
+     * Make our files
      */
-    public function build($data): void
+    public function make($data): void
     {
-        $builderFactory = App::make(BuilderFactoryInterface::class);
+        $builderFactory = App::make(MakerFactoryInterface::class);
 
         foreach ($this->getTemplateConfig($data['template']) as $file => $settings) {
 
-            $methodName = 'build' . ucfirst($file);
+            $methodName = 'make' . ucfirst($file);
 
             if (method_exists($builderFactory, $methodName)) {
                 $builderFactory->$methodName([
                     ...$settings,
                     ...$data
-                ])->build();
+                ])->make();
             }
 
         }

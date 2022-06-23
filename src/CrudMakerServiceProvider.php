@@ -2,14 +2,13 @@
 
 namespace DKart\CrudMaker;
 
-use DKart\CrudMaker\Builder\BuilderFactory;
-use DKart\CrudMaker\Builder\BuilderFactoryInterface;
 use DKart\CrudMaker\Commands\MakeCrud;
+use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
+use DKart\CrudMaker\Maker\MakerFactory;
 use Illuminate\Support\ServiceProvider;
 
 class CrudMakerServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      *
@@ -32,7 +31,7 @@ class CrudMakerServiceProvider extends ServiceProvider
             __DIR__ . 'Publishes/Managers/Manager.php' => base_path('app/Http/Managers/Manager.php'),
         ], 'crudMaker');
 
-        $this->app->bind(BuilderFactoryInterface::class, BuilderFactory::class);
+        $this->app->bind(MakerFactoryInterface::class, MakerFactory::class);
     }
 
     /**

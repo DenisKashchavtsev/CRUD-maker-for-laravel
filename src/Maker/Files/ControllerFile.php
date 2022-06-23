@@ -1,10 +1,10 @@
 <?php
 
-namespace DKart\CrudMaker\Builder\Builders;
+namespace DKart\CrudMaker\Maker\Files;
 
 use Illuminate\Support\Str;
 
-class ControllerBuilder extends Builder
+class ControllerFile extends File
 {
     /**
      * @var string
@@ -33,10 +33,10 @@ class ControllerBuilder extends Builder
     /**
      * Build our controller file
      */
-    public function build()
+    public function make()
     {
         $template = $this->loadTemplate();
-        $template = $this->buildParts($template);
+        $template = $this->buildClass($template);
         $this->publish($template);
     }
 
@@ -47,7 +47,7 @@ class ControllerBuilder extends Builder
      *
      * @return mixed
      */
-    protected function buildParts($template)
+    protected function buildClass($template): mixed
     {
         $replaceArray = [
             '$ENTITY$' => $this->entity,
