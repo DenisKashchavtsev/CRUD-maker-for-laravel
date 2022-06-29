@@ -2,6 +2,8 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
+use Illuminate\Support\Str;
+
 abstract class File
 {
     /**
@@ -25,12 +27,34 @@ abstract class File
     protected string $namespace;
 
     /**
+     * @var string
+     */
+    protected string $entity;
+
+    /**
+     * @var string
+     */
+    protected string $entityPlural;
+
+    /**
      * @param $settings
      */
     public function __construct($settings)
     {
+        $this->entity = Str::camel($settings['entity']);
+        $this->entityPlural = Str::camel($settings['entityPlural']);
         $this->patch = $settings['path'];
         $this->namespace = $settings['namespace'];
+    }
+
+    /**
+     * @return void
+     */
+    public function make(): void
+    {
+        $template = $this->loadTemplate();
+        $template = $this->buildClass($template);
+        $this->publish($template);
     }
 
     /**

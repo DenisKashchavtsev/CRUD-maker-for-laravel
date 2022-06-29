@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace $NAMESPACE$;
 
 use App\Http\Managers\$PASCAL_ENTITY$Manager;
 use App\Http\Requests\$PASCAL_ENTITY$Request;
