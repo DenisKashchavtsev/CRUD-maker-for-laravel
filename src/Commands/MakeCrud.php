@@ -44,7 +44,7 @@ class MakeCrud extends Command
         $this->data['entity'] = $this->ask('Entity:', 'Product');
         $this->data['entityPlural'] = $this->ask('Entity plural:', 'Products');
         $this->data['generateTests'] = $this->ask('Do you want to generate tests for the controller?. [Experimental] (yes/no) [no]:', 'no');
-        $this->data['template'] = $this->ask('[Default] (yes/no) [no]:', 'Default');
+        $this->data['templateName'] = $this->ask('[Default] (yes/no) [no]:', 'Default');
 
         App::make(Maker::class)->make($this->data);
     }

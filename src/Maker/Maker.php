@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\App;
 class Maker
 {
     /**
-     * Make our files
+     * @param array $data
+     * @return void
      */
-    public function make($data): void
+    public function make(array $data): void
     {
         $builderFactory = App::make(MakerFactoryInterface::class);
 
@@ -24,15 +25,14 @@ class Maker
                     ...$data
                 ])->make();
             }
-
         }
     }
 
     /**
-     * @param $template
+     * @param string $template
      * @return array
      */
-    private function getTemplateConfig($template): array
+    private function getTemplateConfig(string $template): array
     {
         return config('crudMaker.templates')[strtolower($template)] ?? [];
     }

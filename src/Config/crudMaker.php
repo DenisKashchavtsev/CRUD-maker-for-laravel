@@ -10,10 +10,10 @@ return [
                 'path' => 'app/Http/Controllers',
                 'namespace' => 'App\Http\Controllers'
             ],
-//            'model' => [
-//                'path' => 'app/Models',
-//                'namespace' => 'App\Http\Controllers'
-//            ],
+            'model' => [
+                'path' => 'app/Models',
+                'namespace' => 'App\Models'
+            ],
         ],
 
         'admin' => [

@@ -2,24 +2,38 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-class ControllerFile extends File
+class ModelFile extends File
 {
+    CONST PREFIX_FILE = '.php';
+
+    CONST FILE_NAME = 'model';
+
     /**
      * @param $settings
      */
     public function __construct($settings)
     {
-        $this->fileName = $settings['entityPlural'] . 'Controller.php';
+        $this->fileName = $settings['entity'] . self::PREFIX_FILE;
 
-        $this->templatePath = config('crudMaker.dir_templates') . 'Default/controller';
+        $this->templatePath = $this->getTemplatePath();
 
         parent::__construct($settings);
     }
 
     /**
-     * @return ControllerFile
+     * @return string
      */
-    protected function buildClass(): ControllerFile
+    protected function getTemplatePath(): string
+    {
+        return config('crudMaker.dir_templates')
+            . $this->templateName
+            . self::FILE_NAME;
+    }
+
+    /**
+     * @return ModelFile
+     */
+    protected function buildClass(): ModelFile
     {
         $replaceArray = [
             '$ENTITY$' => $this->entity,

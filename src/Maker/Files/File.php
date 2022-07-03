@@ -37,14 +37,25 @@ abstract class File
     protected string $entityPlural;
 
     /**
-     * @param $settings
+     * @var string
      */
-    public function __construct($settings)
+    protected string $templatePath;
+
+    /**
+     * @var string
+     */
+    protected string $templateName;
+
+    /**
+     * @param array $settings
+     */
+    public function __construct(array $settings)
     {
         $this->entity = Str::camel($settings['entity']);
         $this->entityPlural = Str::camel($settings['entityPlural']);
         $this->patch = $settings['path'];
         $this->namespace = $settings['namespace'];
+        $this->templateName = $settings['templateName'];
     }
 
     /**
@@ -52,30 +63,33 @@ abstract class File
      */
     public function make(): void
     {
-        $template = $this->loadTemplate();
-        $template = $this->buildClass($template);
-        $this->publish($template);
+        $this->loadTemplate()
+            ->buildClass()
+            ->publish();
     }
 
     /**
-     * @return bool|string
+     * @return File
      */
-    protected function loadTemplate(): bool|string
+    protected function loadTemplate(): static
     {
-        return file_get_contents($this->template);
+        $this->template = file_get_contents($this->templatePath);
+
+        return $this;
     }
 
+    abstract protected function buildClass();
+
     /**
-     * @param $template
      * @return void
      */
-    protected function publish($template): void
+    protected function publish(): void
     {
         if (! file_exists(base_path($this->patch))) {
             mkdir(base_path($this->patch));
             chmod(base_path($this->patch), 0777);
         }
 
-        file_put_contents(base_path($this->patch) . '/' . $this->fileName, $template);
+        file_put_contents(base_path($this->patch) . '/' . $this->fileName, $this->template);
     }
 }
