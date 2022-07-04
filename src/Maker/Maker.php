@@ -15,7 +15,7 @@ class Maker
     {
         $builderFactory = App::make(MakerFactoryInterface::class);
 
-        foreach ($this->getTemplateConfig($data['template']) as $file => $settings) {
+        foreach ($this->getTemplateConfig($data['templateName']) as $file => $settings) {
 
             $methodName = 'make' . ucfirst($file);
 

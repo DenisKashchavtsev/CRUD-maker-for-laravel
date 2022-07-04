@@ -56,6 +56,19 @@ abstract class File
         $this->patch = $settings['path'];
         $this->namespace = $settings['namespace'];
         $this->templateName = $settings['templateName'];
+        $this->fileName = $settings['entity'] . static::PREFIX_FILE;
+        $this->templatePath = $this->getTemplatePath();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTemplatePath(): string
+    {
+        return config('crudMaker.dir_templates')
+            . $this->templateName
+            . '/'
+            . static::FILE_NAME;
     }
 
     /**

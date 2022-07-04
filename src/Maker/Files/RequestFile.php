@@ -2,21 +2,19 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-class ModelFile extends File
+class RequestFile extends File
 {
-    CONST PREFIX_FILE = '.php';
+    CONST PREFIX_FILE = 'Request.php';
 
-    CONST FILE_NAME = 'model';
+    CONST FILE_NAME = 'request';
 
     /**
-     * @return ModelFile
+     * @return RequestFile
      */
-    protected function buildClass(): ModelFile
+    protected function buildClass(): RequestFile
     {
         $replaceArray = [
-            '$ENTITY$' => $this->entity,
             '$PASCAL_ENTITY$' => ucfirst($this->entity),
-            '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->entityPlural),
             '$NAMESPACE$' => $this->namespace,
         ];
 

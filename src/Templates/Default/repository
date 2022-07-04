@@ -1,0 +1,46 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Models\$PASCAL_ENTITY$;
+use App\Filters\Filterable;
+
+class $PASCAL_ENTITY$Repository
+{
+    /**
+     * Trait for filtering by get parameters
+     */
+    use Filterable;
+
+    /**
+     * @var string
+     */
+    private string $model;
+
+    /**
+     * ExperiencesRepository constructor.
+     */
+    public function __construct()
+    {
+        $this->model = $PASCAL_ENTITY$::class;
+
+        $this->filters = [ ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAll(): mixed
+    {
+        return $this->applyFiltersToQuery($this->model::query())->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id): mixed
+    {
+        return $this->model::find($id);
+    }
+}

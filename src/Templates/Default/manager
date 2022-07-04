@@ -1,0 +1,20 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Models\Product;
+
+class $PASCAL_ENTITY$Manager extends Manager
+{
+    /**
+     * @param mixed|null $entity
+     */
+    public function __construct(mixed $entity = null)
+    {
+        if (!is_null($entity)) {
+            $this->entity = $entity;
+        } else {
+            $this->entity = new $PASCAL_ENTITY$();
+        }
+    }
+}

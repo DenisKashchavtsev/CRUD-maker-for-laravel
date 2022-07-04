@@ -4,17 +4,9 @@ namespace DKart\CrudMaker\Maker\Files;
 
 class ControllerFile extends File
 {
-    /**
-     * @param $settings
-     */
-    public function __construct($settings)
-    {
-        $this->fileName = $settings['entityPlural'] . 'Controller.php';
+    CONST PREFIX_FILE = 'Controller.php';
 
-        $this->templatePath = config('crudMaker.dir_templates') . 'Default/controller';
-
-        parent::__construct($settings);
-    }
+    CONST FILE_NAME = 'controller';
 
     /**
      * @return ControllerFile

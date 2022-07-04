@@ -14,6 +14,18 @@ return [
                 'path' => 'app/Models',
                 'namespace' => 'App\Models'
             ],
+            'manager' => [
+                'path' => 'app/Http/Managers',
+                'namespace' => 'App\Http\Managers'
+            ],
+            'repository' => [
+                'path' => 'app/Repositories',
+                'namespace' => 'App\Repositories'
+            ],
+            'request' => [
+                'path' => 'app/Http/Requests',
+                'namespace' => 'App\Http\Requests'
+            ],
         ],
 
         'admin' => [
