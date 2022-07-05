@@ -2,6 +2,7 @@
 
 namespace DKart\CrudMaker\Commands;
 
+use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 use DKart\CrudMaker\Maker\Maker;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
@@ -39,14 +40,21 @@ class MakeCrud extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(PropertyContainerInterface $propertyContainer)
     {
-        $this->data['entity'] = $this->ask('Entity:', 'Product');
-        $this->data['entityPlural'] = $this->ask('Entity plural:', 'Products');
-        $this->data['generateTests'] = $this->ask('Do you want to generate tests for the controller?. [Experimental] (yes/no) [no]:', 'no');
-        $this->data['templateName'] = $this->ask('[Default] (yes/no) [no]:', 'Default');
+        $entity = $this->ask('Entity:', 'Product');
+        $propertyContainer->setProperty('entity', $entity);
 
-        App::make(Maker::class)->make($this->data);
+        $entityPlural = $this->ask('Entity plural:', 'Products');
+        $propertyContainer->setProperty('entityPlural', $entityPlural);
+
+        $generateTests = $this->ask('Do you want to generate tests for the controller?. [Experimental] (yes/no) [no]:', 'no');
+        $propertyContainer->setProperty('generateTests', $generateTests);
+
+        $templateName = $this->ask('[Default] (yes/no) [no]:', 'Default');
+        $propertyContainer->setProperty('templateName', $templateName);
+
+        App::make(Maker::class)->make();
     }
 }
 

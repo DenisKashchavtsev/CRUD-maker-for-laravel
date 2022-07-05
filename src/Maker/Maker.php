@@ -3,37 +3,50 @@
 namespace DKart\CrudMaker\Maker;
 
 use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
+use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 use Illuminate\Support\Facades\App;
 
 class Maker
 {
     /**
-     * @param array $data
+     * @var PropertyContainerInterface
+     */
+    private PropertyContainerInterface $propertyContainer;
+
+    /**
+     * @param PropertyContainerInterface $propertyContainer
+     */
+    public function __construct(PropertyContainerInterface $propertyContainer)
+    {
+        $this->propertyContainer = $propertyContainer;
+    }
+
+    /**
      * @return void
      */
-    public function make(array $data): void
+    public function make(): void
     {
         $builderFactory = App::make(MakerFactoryInterface::class);
 
-        foreach ($this->getTemplateConfig($data['templateName']) as $file => $settings) {
+        foreach ($this->getTemplateConfig() as $file => $settings) {
 
             $methodName = 'make' . ucfirst($file);
 
             if (method_exists($builderFactory, $methodName)) {
                 $builderFactory->$methodName([
-                    ...$settings,
-                    ...$data
+                    ...$settings
                 ])->make();
             }
         }
     }
 
     /**
-     * @param string $template
      * @return array
      */
-    private function getTemplateConfig(string $template): array
+    private function getTemplateConfig(): array
     {
-        return config('crudMaker.templates')[strtolower($template)] ?? [];
+        return config('crudMaker.templates')[
+            strtolower($this->propertyContainer->getProperty('templateName'))
+            ] ?? [];
     }
 }

@@ -4,7 +4,9 @@ namespace DKart\CrudMaker;
 
 use DKart\CrudMaker\Commands\MakeCrud;
 use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
+use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 use DKart\CrudMaker\Maker\MakerFactory;
+use DKart\CrudMaker\Maker\PropertyContainer;
 use Illuminate\Support\ServiceProvider;
 
 class CrudMakerServiceProvider extends ServiceProvider
@@ -14,7 +16,7 @@ class CrudMakerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->app->bind('make:crud', function ($app) {
             return new MakeCrud();
@@ -32,6 +34,8 @@ class CrudMakerServiceProvider extends ServiceProvider
         ], 'crudMaker');
 
         $this->app->bind(MakerFactoryInterface::class, MakerFactory::class);
+
+        $this->app->singleton(PropertyContainerInterface::class, PropertyContainer::class);
     }
 
     /**
@@ -39,7 +43,7 @@ class CrudMakerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(
             __DIR__ . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'crudMaker.php', 'crudMaker'
