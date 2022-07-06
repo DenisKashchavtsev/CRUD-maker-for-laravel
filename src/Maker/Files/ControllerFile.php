@@ -14,9 +14,9 @@ class ControllerFile extends File
     protected function buildClass(): ControllerFile
     {
         $replaceArray = [
-            '$ENTITY$' => $this->entity,
-            '$PASCAL_ENTITY$' => ucfirst($this->entity),
-            '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->entityPlural),
+            '$ENTITY$' => $this->propertyContainer->getProperty('entity'),
+            '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
+            '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->propertyContainer->getProperty('entityPlural')),
             '$NAMESPACE$' => $this->namespace,
         ];
 

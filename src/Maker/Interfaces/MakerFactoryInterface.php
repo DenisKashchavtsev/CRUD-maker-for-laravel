@@ -5,8 +5,27 @@ namespace DKart\CrudMaker\Maker\Interfaces;
 interface MakerFactoryInterface
 {
     /**
-     * @param $settings
      * @return mixed
      */
-    public function makeController($settings): mixed;
+    public function makeController(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeManager(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeModel(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeRepository(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeRequest(): mixed;
 }

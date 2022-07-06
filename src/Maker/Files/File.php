@@ -2,7 +2,7 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-use Illuminate\Support\Str;
+use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 
 abstract class File
 {
@@ -10,11 +10,6 @@ abstract class File
      * @var string
      */
     protected string $template;
-
-    /**
-     * @var string
-     */
-    protected string $fileName;
 
     /**
      * @var string
@@ -27,37 +22,37 @@ abstract class File
     protected string $namespace;
 
     /**
-     * @var string
+     * @var PropertyContainerInterface
      */
-    protected string $entity;
+    protected PropertyContainerInterface $propertyContainer;
 
     /**
-     * @var string
+     * @param PropertyContainerInterface $propertyContainer
      */
-    protected string $entityPlural;
-
-    /**
-     * @var string
-     */
-    protected string $templatePath;
-
-    /**
-     * @var string
-     */
-    protected string $templateName;
-
-    /**
-     * @param array $settings
-     */
-    public function __construct(array $settings)
+    public function __construct(PropertyContainerInterface $propertyContainer)
     {
-        $this->entity = Str::camel($settings['entity']);
-        $this->entityPlural = Str::camel($settings['entityPlural']);
+        $this->propertyContainer = $propertyContainer;
+    }
+
+    /**
+     * @param $settings
+     * @return File
+     */
+    public function setSettings($settings): File
+    {
         $this->patch = $settings['path'];
         $this->namespace = $settings['namespace'];
-        $this->templateName = $settings['templateName'];
-        $this->fileName = $settings['entity'] . static::PREFIX_FILE;
-        $this->templatePath = $this->getTemplatePath();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getFileName(): string
+    {
+        return $this->propertyContainer->getProperty('entity')
+            . static::PREFIX_FILE;
     }
 
     /**
@@ -66,7 +61,7 @@ abstract class File
     protected function getTemplatePath(): string
     {
         return config('crudMaker.dir_templates')
-            . $this->templateName
+            . $this->propertyContainer->getProperty('templateName')
             . '/'
             . static::FILE_NAME;
     }
@@ -86,23 +81,26 @@ abstract class File
      */
     protected function loadTemplate(): static
     {
-        $this->template = file_get_contents($this->templatePath);
+        $this->template = file_get_contents($this->getTemplatePath());
 
         return $this;
     }
 
-    abstract protected function buildClass();
+    /**
+     * @return mixed
+     */
+    abstract protected function buildClass(): mixed;
 
     /**
      * @return void
      */
     protected function publish(): void
     {
-        if (! file_exists(base_path($this->patch))) {
+        if (!file_exists(base_path($this->patch))) {
             mkdir(base_path($this->patch));
             chmod(base_path($this->patch), 0777);
         }
 
-        file_put_contents(base_path($this->patch) . '/' . $this->fileName, $this->template);
+        file_put_contents(base_path($this->patch) . '/' . $this->getFileName(), $this->template);
     }
 }

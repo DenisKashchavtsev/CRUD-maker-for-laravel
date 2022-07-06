@@ -33,9 +33,7 @@ class Maker
             $methodName = 'make' . ucfirst($file);
 
             if (method_exists($builderFactory, $methodName)) {
-                $builderFactory->$methodName([
-                    ...$settings
-                ])->make();
+                $builderFactory->$methodName()->setSettings($settings)->make();
             }
         }
     }

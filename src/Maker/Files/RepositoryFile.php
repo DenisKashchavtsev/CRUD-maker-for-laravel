@@ -14,8 +14,8 @@ class RepositoryFile extends File
     protected function buildClass(): RepositoryFile
     {
         $replaceArray = [
-            '$PASCAL_ENTITY$' => ucfirst($this->entity),
-            '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->entityPlural),
+            '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
+            '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->propertyContainer->getProperty('entityPlural')),
             '$NAMESPACE$' => $this->namespace,
         ];
 

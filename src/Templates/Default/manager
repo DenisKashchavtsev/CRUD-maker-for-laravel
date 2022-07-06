@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use App\Models\Product;
+use App\Models\$PASCAL_ENTITY$;
 
 class $PASCAL_ENTITY$Manager extends Manager
 {

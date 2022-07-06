@@ -14,7 +14,7 @@ class RequestFile extends File
     protected function buildClass(): RequestFile
     {
         $replaceArray = [
-            '$PASCAL_ENTITY$' => ucfirst($this->entity),
+            '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
             '$NAMESPACE$' => $this->namespace,
         ];
 
