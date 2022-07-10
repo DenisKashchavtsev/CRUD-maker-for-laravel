@@ -9,6 +9,13 @@
             "Dkart\\CrudMaker\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DKart\\CrudMaker\\CrudMakerServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "Kashchavtsev Denis"
