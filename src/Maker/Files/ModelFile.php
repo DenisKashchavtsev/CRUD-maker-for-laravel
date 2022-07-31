@@ -18,6 +18,7 @@ class ModelFile extends File
             '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
             '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->propertyContainer->getProperty('entityPlural')),
             '$NAMESPACE$' => $this->namespace,
+            '$FILLABLE$' => $this->getFillable(),
         ];
 
         $this->template = str_replace( array_keys($replaceArray), array_values($replaceArray), $this->template );
@@ -25,4 +26,8 @@ class ModelFile extends File
         return $this;
     }
 
+    protected function getFillable()
+    {
+        return implode(',', $this->getFields());
+    }
 }

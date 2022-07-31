@@ -3,6 +3,8 @@
 namespace DKart\CrudMaker\Maker\Files;
 
 use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 abstract class File
 {
@@ -102,5 +104,15 @@ abstract class File
         }
 
         file_put_contents(base_path($this->patch) . '/' . $this->getFileName(), $this->template);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFields(): array
+    {
+        return Schema::getColumnListing(
+            Str::snake($this->propertyContainer->getProperty('entityPlural'))
+        );
     }
 }

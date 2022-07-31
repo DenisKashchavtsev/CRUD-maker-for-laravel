@@ -25,4 +25,12 @@ class ControllerFile extends File
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    protected function getFileName(): string
+    {
+        return $this->propertyContainer->getProperty('entityPlural')
+            . static::PREFIX_FILE;
+    }
 }
