@@ -2,16 +2,16 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-class ModelFile extends File
+class ViewListFile extends File
 {
     CONST PREFIX_FILE = '.php';
 
-    CONST FILE_NAME = 'model';
+    CONST FILE_NAME = 'viewList';
 
     /**
-     * @return ModelFile
+     * @return ViewListFile
      */
-    protected function buildClass(): ModelFile
+    protected function buildClass(): ViewListFile
     {
         $replaceArray = [
             '$ENTITY$' => $this->propertyContainer->getProperty('entity'),

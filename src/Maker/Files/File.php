@@ -115,4 +115,13 @@ abstract class File
             Str::snake($this->propertyContainer->getProperty('entityPlural'))
         );
     }
+
+    /**
+     * @param string $field
+     * @return string
+     */
+    protected function getFieldType(string $field): string
+    {
+        return Schema::getColumnType(Str::snake($this->propertyContainer->getProperty('entityPlural')), $field);
+    }
 }

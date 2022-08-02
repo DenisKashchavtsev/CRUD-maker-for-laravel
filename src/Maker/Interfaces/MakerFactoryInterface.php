@@ -28,4 +28,9 @@ interface MakerFactoryInterface
      * @return mixed
      */
     public function makeRequest(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeViewList(): mixed;
 }

@@ -26,6 +26,9 @@ return [
                 'path' => 'app/Http/Requests',
                 'namespace' => 'App\Http\Requests'
             ],
+            'view' => [
+                'path' => 'resources/views',
+            ],
         ],
 
         'admin' => [
