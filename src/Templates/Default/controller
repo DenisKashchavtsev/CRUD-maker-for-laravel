@@ -8,26 +8,27 @@ use App\Models\$PASCAL_ENTITY$;
 use App\Repositories\$PASCAL_ENTITY$Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
 
 class $PASCAL_ENTITY_PLURAL$Controller extends Controller
 {
     /**
      * @var $PASCAL_ENTITY$Repository
      */
-    private $PASCAL_ENTITY$Repository $$ENTITY$Repository;
+    private $PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository;
 
     /**
      * $PASCAL_ENTITY$Controller constructor.
-     * @param $PASCAL_ENTITY$Repository $$ENTITY$Repository
+     * @param $PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository
      */
-    public function __construct($PASCAL_ENTITY$Repository $$ENTITY$Repository)
+    public function __construct($PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository)
     {
-        $this->$ENTITY$Repository = $$ENTITY$Repository;
+        $this->$SNAKE_ENTITY$Repository = $$SNAKE_ENTITY$Repository;
 
-        $this->authorizeResource($PASCAL_ENTITY$::class);
+        //$this->authorizeResource($PASCAL_ENTITY$::class);
     }
 
     /**
@@ -37,8 +38,8 @@ class $PASCAL_ENTITY_PLURAL$Controller extends Controller
      */
     public function index(): Application|Factory|\Illuminate\Contracts\View\View
     {
-        return view('$ENTITY$.index', [
-            '$ENTITY$' => $this->$ENTITY$Repository->getAll()
+        return view('$SNAKE_ENTITY$.list', [
+            '$SNAKE_ENTITY_PLURAL$' => $this->$SNAKE_ENTITY$Repository->getAll()
         ]);
     }
 
@@ -49,43 +50,45 @@ class $PASCAL_ENTITY_PLURAL$Controller extends Controller
 	 */
 	public function create(): View
     {
-        return view('$ENTITY$.index');
+        return view('$SNAKE_ENTITY$.form');
 	}
 
     /**
      * Store a newly created resource in storage.
      *
      * @param $PASCAL_ENTITY$Request $request
-     * @return Response
+     * @return RedirectResponse|Redirector|Application
      */
-    public function store($PASCAL_ENTITY$Request $request): Response
+    public function store($PASCAL_ENTITY$Request $request): Application|RedirectResponse|Redirector
     {
-        return App::make($PASCAL_ENTITY$Manager::class)->save($request->validated());
+        App::make($PASCAL_ENTITY$Manager::class)->save($request->validated());
+
+        return redirect('$SNAKE_ENTITY$')->with('message', 'Successfully created!');
     }
 
     /**
      * Show the form for editing the specified $RESOURCE$.
      *
-     * @param $PASCAL_ENTITY$ $$ENTITY$
+     * @param $PASCAL_ENTITY$ $$SNAKE_ENTITY$
      * @return View
      */
-    public function edit($PASCAL_ENTITY$ $$ENTITY$): View
+    public function edit($PASCAL_ENTITY$ $$SNAKE_ENTITY$): View
     {
-        return view('$ENTITY$.edit', [
-            '$ENTITY$' => $$ENTITY$
+        return view('$SNAKE_ENTITY$.form', [
+            '$SNAKE_ENTITY$' => $$SNAKE_ENTITY$
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $PASCAL_ENTITY$ $$ENTITY$
+     * @param $PASCAL_ENTITY$ $$SNAKE_ENTITY$
      * @return View
      */
-    public function show($PASCAL_ENTITY$ $$ENTITY$): View
+    public function show($PASCAL_ENTITY$ $$SNAKE_ENTITY$): View
     {
-        return view('$ENTITY$.show', [
-            '$ENTITY$' => $$ENTITY$
+        return view('$SNAKE_ENTITY$Show', [
+            '$SNAKE_ENTITY$' => $$SNAKE_ENTITY$
         ]);
     }
 
@@ -93,22 +96,26 @@ class $PASCAL_ENTITY_PLURAL$Controller extends Controller
      * Update the specified resource in storage.
      *
      * @param $PASCAL_ENTITY$Request $request
-     * @param $PASCAL_ENTITY$ $$ENTITY$
-     * @return Response
+     * @param $PASCAL_ENTITY$ $$SNAKE_ENTITY$
+     * @return Application|Redirector|RedirectResponse
      */
-    public function update($PASCAL_ENTITY$Request $request, $PASCAL_ENTITY$ $$ENTITY$): Response
+    public function update($PASCAL_ENTITY$Request $request, $PASCAL_ENTITY$ $$SNAKE_ENTITY$): Application|RedirectResponse|Redirector
     {
-        return App::make($PASCAL_ENTITY$Manager::class, ['entity' => $$ENTITY$])->save($request->validated());
+        App::make($PASCAL_ENTITY$Manager::class, ['entity' => $$SNAKE_ENTITY$])->save($request->validated());
+
+        return redirect('$SNAKE_ENTITY$')->with('message', 'Successfully updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return Response
+     * @return Application|Redirector|RedirectResponse
      */
-    public function destroy($id): Response
+    public function destroy($id): Application|RedirectResponse|Redirector
     {
-        return App::make($PASCAL_ENTITY$Manager::class)->delete([$id]);
+        App::make($PASCAL_ENTITY$Manager::class)->delete([$id]);
+
+        return redirect('$SNAKE_ENTITY$')->with('message', 'Successfully deleted!');
     }
 }

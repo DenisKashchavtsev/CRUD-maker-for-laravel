@@ -1,0 +1,14 @@
+<div>
+    @if(isset($$SNAKE_ENTITY$))
+        <form action="{{ route('$SNAKE_ENTITY$.update', $$SNAKE_ENTITY$['id']) }}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @else
+        <form action="{{ route('$SNAKE_ENTITY$.store') }}" method="POST">
+    @endif
+
+        $FIELDS$
+
+        <button>Save</button>
+    </form>
+</div>

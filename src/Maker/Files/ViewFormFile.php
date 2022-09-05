@@ -2,18 +2,18 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-class ViewListFile extends File
+class ViewFormFile extends File
 {
     CONST PREFIX_FILE = '.blade.php';
 
-    CONST FILE_NAME = 'viewList';
+    CONST FILE_NAME = 'viewForm';
 
     /**
      * @return string
      */
     protected function getFileName(): string
     {
-        return 'list' . static::PREFIX_FILE;
+        return 'form' . static::PREFIX_FILE;
     }
 
     /**
@@ -28,9 +28,9 @@ class ViewListFile extends File
     }
 
     /**
-     * @return ViewListFile
+     * @return ViewFormFile
      */
-    protected function buildClass(): ViewListFile
+    protected function buildClass(): ViewFormFile
     {
         $replaceArray = [
             '$ENTITY$' => $this->propertyContainer->getProperty('entity'),
@@ -53,9 +53,9 @@ class ViewListFile extends File
         $fields = '';
 
         foreach ($this->getFields() as $field) {
-            $fields .= '<td>{{ $'
+            $fields .= '<input type="text" value="{{ $'
                 . lcfirst($this->propertyContainer->getProperty('entity'))
-                . '->' . $field . ' }}</td>'
+                . '->' . $field . '  ?? \'\' }}">'
                 . PHP_EOL;
         }
 

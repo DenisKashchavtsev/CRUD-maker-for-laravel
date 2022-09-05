@@ -26,7 +26,10 @@ return [
                 'path' => 'app/Http/Requests',
                 'namespace' => 'App\Http\Requests'
             ],
-            'view' => [
+            'viewList' => [
+                'path' => 'resources/views',
+            ],
+            'viewForm' => [
                 'path' => 'resources/views',
             ],
         ],

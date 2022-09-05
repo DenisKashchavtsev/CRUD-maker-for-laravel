@@ -43,7 +43,7 @@ abstract class File
     public function setSettings($settings): File
     {
         $this->patch = $settings['path'];
-        $this->namespace = $settings['namespace'];
+        $this->namespace = $settings['namespace'] ?? '';
 
         return $this;
     }
@@ -100,7 +100,6 @@ abstract class File
     {
         if (!file_exists(base_path($this->patch))) {
             mkdir(base_path($this->patch));
-            chmod(base_path($this->patch), 0777);
         }
 
         file_put_contents(base_path($this->patch) . '/' . $this->getFileName(), $this->template);

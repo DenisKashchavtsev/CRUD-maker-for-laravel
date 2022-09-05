@@ -16,7 +16,9 @@ class ControllerFile extends File
         $replaceArray = [
             '$ENTITY$' => $this->propertyContainer->getProperty('entity'),
             '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
+            '$SNAKE_ENTITY$' => lcfirst($this->propertyContainer->getProperty('entity')),
             '$PASCAL_ENTITY_PLURAL$' => ucfirst($this->propertyContainer->getProperty('entityPlural')),
+            '$SNAKE_ENTITY_PLURAL$' => lcfirst($this->propertyContainer->getProperty('entityPlural')),
             '$NAMESPACE$' => $this->namespace,
         ];
 

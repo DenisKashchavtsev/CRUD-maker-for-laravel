@@ -2,7 +2,9 @@
 
 namespace $NAMESPACE$;
 
-class $PASCAL_ENTITY$Request
+use Illuminate\Foundation\Http\FormRequest;
+
+class $PASCAL_ENTITY$Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +24,7 @@ class $PASCAL_ENTITY$Request
     public function rules(): array
     {
         return [
-            'id' => ['sometimes'],
+            $RULES$
         ];
     }
 }

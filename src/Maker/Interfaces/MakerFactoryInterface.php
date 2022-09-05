@@ -33,4 +33,9 @@ interface MakerFactoryInterface
      * @return mixed
      */
     public function makeViewList(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeViewForm(): mixed;
 }

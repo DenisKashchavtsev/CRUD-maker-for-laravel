@@ -1,0 +1,22 @@
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+<table>
+    <a href="{{ route('$SNAKE_ENTITY$.create') }}">Create</a>
+    @foreach($$SNAKE_ENTITY$s as $$SNAKE_ENTITY$)
+        <tr>
+            $FIELDS$
+            <td>
+                <button onclick="location.href = '{{ route('$SNAKE_ENTITY$.edit', $$SNAKE_ENTITY$->id) }}'">Edit</button>
+                <form method="POST" action="{{ route('$SNAKE_ENTITY$.destroy', $$SNAKE_ENTITY$->id) }}" style="display: inline-block;">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button>Delete</button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+</table>

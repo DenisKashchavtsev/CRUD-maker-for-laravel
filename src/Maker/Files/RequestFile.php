@@ -16,6 +16,7 @@ class RequestFile extends File
         $replaceArray = [
             '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
             '$NAMESPACE$' => $this->namespace,
+            '$RULES$' => $this->getRules(),
         ];
 
         $this->template = str_replace( array_keys($replaceArray), array_values($replaceArray), $this->template );
@@ -23,4 +24,20 @@ class RequestFile extends File
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    protected function getRules(): string
+    {
+        $rules = '';
+
+        foreach ($this->getFields() as $key => $field) {
+            if($key) {
+                $rules .= PHP_EOL . '            ';
+            }
+            $rules .= '\'' . $field . '\' => [\'sometimes\'],';
+        }
+
+        return $rules;
+    }
 }

@@ -7,6 +7,7 @@ use DKart\CrudMaker\Maker\Files\ManagerFile;
 use DKart\CrudMaker\Maker\Files\ModelFile;
 use DKart\CrudMaker\Maker\Files\RepositoryFile;
 use DKart\CrudMaker\Maker\Files\RequestFile;
+use DKart\CrudMaker\Maker\Files\ViewFormFile;
 use DKart\CrudMaker\Maker\Files\ViewListFile;
 use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
 use Illuminate\Support\Facades\App;
@@ -59,5 +60,13 @@ class MakerFactory implements MakerFactoryInterface
     public function makeViewList(): mixed
     {
         return App::make(ViewListFile::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function makeViewForm(): mixed
+    {
+        return App::make(ViewFormFile::class);
     }
 }
