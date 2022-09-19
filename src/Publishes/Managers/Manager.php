@@ -20,10 +20,10 @@ abstract class Manager
 
     /**
      * @param array $data
-     * @return object|null
+     * @return void
      * @throws ManagerErrorOnSaveException
      */
-    public function save(array $data): ?object
+    public function save(array $data): void
     {
         try {
             DB::beginTransaction();
@@ -37,20 +37,23 @@ abstract class Manager
             $this->saveRelation($data);
 
             DB::commit();
-
-            return redirect()->back()->withSuccess("Success");
         } catch (\Exception $exception) {
 
             DB::rollBack();
+
             Log::error($exception->getMessage());
 
             throw new ManagerErrorOnSaveException();
         }
     }
 
-    public function delete($ids)
+    /**
+     * @param int|array $ids
+     * @return void
+     */
+    public function delete(int|array $ids): void
     {
-        return redirect()->back()->withSuccess("Success");
+        $this->entity->destroy($ids);
     }
 
     /**

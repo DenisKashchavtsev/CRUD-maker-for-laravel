@@ -1,0 +1,93 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\$PASCAL_ENTITY$;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class $PASCAL_ENTITY_PLURAL$Test extends TestCase
+{
+    const URL = '$SNAKE_ENTITY$';
+
+    use RefreshDatabase;
+
+    public function test_list_$SNAKE_ENTITY$()
+    {
+        $PASCAL_ENTITY$::create([
+            'name' => '$PASCAL_ENTITY$ test',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response = $this->get(self::URL);
+        $response->assertStatus(200);
+    }
+
+    public function test_show_$SNAKE_ENTITY$()
+    {
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
+            'name' => '$PASCAL_ENTITY$ test',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response = $this->get(self::URL . '/' . $$SNAKE_ENTITY$->id);
+        $response->assertStatus(200);
+    }
+
+    public function test_create_$SNAKE_ENTITY$()
+    {
+        $response = $this->get(self::URL . '/create');
+        $response->assertStatus(200);
+
+        $response = $this->post(self::URL, [
+            'name' => '$PASCAL_ENTITY$ test',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response->assertRedirect(self::URL);
+
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test')->first();
+        $this->assertNotNull($$SNAKE_ENTITY$);
+    }
+
+    public function test_edit_$SNAKE_ENTITY$()
+    {
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
+            'name' => '$PASCAL_ENTITY$ test',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response = $this->get(self::URL . '/' . $$SNAKE_ENTITY$->id . '/edit');
+        $response->assertStatus(200);
+
+        $response = $this->put(self::URL . '/' . $$SNAKE_ENTITY$->id, [
+            'name' => '$PASCAL_ENTITY$ test updated',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response->assertRedirect(self::URL);
+
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test updated')->first();
+        $this->assertNotNull($$SNAKE_ENTITY$);
+    }
+
+    public function test_delete_$SNAKE_ENTITY$()
+    {
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
+            'name' => '$PASCAL_ENTITY$ test',
+            'price' => 10,
+            'status' => 1,
+        ]);
+
+        $response = $this->delete(self::URL . '/' . $$SNAKE_ENTITY$->id);
+        $response->assertRedirect(self::URL);
+
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test')->first();
+        $this->assertNull($$SNAKE_ENTITY$);
+    }
+}

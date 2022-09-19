@@ -87,7 +87,7 @@ class $PASCAL_ENTITY_PLURAL$Controller extends Controller
      */
     public function show($PASCAL_ENTITY$ $$SNAKE_ENTITY$): View
     {
-        return view('$SNAKE_ENTITY$Show', [
+        return view('$SNAKE_ENTITY$.show', [
             '$SNAKE_ENTITY$' => $$SNAKE_ENTITY$
         ]);
     }

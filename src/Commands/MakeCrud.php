@@ -48,9 +48,6 @@ class MakeCrud extends Command
         $entityPlural = $this->ask('Entity plural:', 'Products');
         $propertyContainer->setProperty('entityPlural', $entityPlural);
 
-        $generateTests = $this->ask('Do you want to generate tests for the controller?. [Experimental] (yes/no) [no]:', 'no');
-        $propertyContainer->setProperty('generateTests', $generateTests);
-
         $templateName = $this->ask('[Default] (yes/no) [no]:', 'Default');
         $propertyContainer->setProperty('templateName', $templateName);
 

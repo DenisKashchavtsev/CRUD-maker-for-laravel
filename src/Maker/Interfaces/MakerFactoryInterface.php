@@ -38,4 +38,14 @@ interface MakerFactoryInterface
      * @return mixed
      */
     public function makeViewForm(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeViewShow(): mixed;
+
+    /**
+     * @return mixed
+     */
+    public function makeTest(): mixed;
 }

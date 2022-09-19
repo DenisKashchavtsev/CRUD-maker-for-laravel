@@ -32,6 +32,13 @@ return [
             'viewForm' => [
                 'path' => 'resources/views',
             ],
+            'viewShow' => [
+                'path' => 'resources/views',
+            ],
+            'test' => [
+                'path' => 'tests/Feature',
+                'namespace' => 'Tests\Feature'
+            ],
         ],
 
         'admin' => [
