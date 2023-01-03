@@ -27,14 +27,6 @@ class MakerFactory implements MakerFactoryInterface
     /**
      * @return mixed
      */
-    public function makeManager(): mixed
-    {
-        return App::make(ManagerFile::class);
-    }
-
-    /**
-     * @return mixed
-     */
     public function makeModel(): mixed
     {
         return App::make(ModelFile::class);

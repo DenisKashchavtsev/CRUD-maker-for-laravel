@@ -12,11 +12,6 @@ interface MakerFactoryInterface
     /**
      * @return mixed
      */
-    public function makeManager(): mixed;
-
-    /**
-     * @return mixed
-     */
     public function makeModel(): mixed;
 
     /**

@@ -9,12 +9,12 @@ trait Filterable
     /**
      * @var array
      */
-    private $filtersForQuery = [];
+    private array $filtersForQuery = [];
 
     /**
      * @var array
      */
-    protected $filters = [];
+    protected array $filters = [];
 
     /**
      * @param $requestFilters
