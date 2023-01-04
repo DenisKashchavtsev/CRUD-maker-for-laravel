@@ -2,17 +2,11 @@
 
 namespace DKart\CrudMaker\Maker\Files;
 
-class RequestFile extends File
+class ResourceCollectionFile extends File
 {
-    CONST PREFIX_FILE = 'Request.php';
+    CONST PREFIX_FILE = 'Collection.php';
 
-    CONST FILE_NAME = 'request';
-
-    protected array $ignoredFields = [
-        'id',
-        'created_at',
-        'updated_at',
-    ];
+    CONST FILE_NAME = 'resourceCollection';
 
     /**
      * @param $settings
@@ -27,15 +21,14 @@ class RequestFile extends File
     }
 
     /**
-     * @return RequestFile
+     * @return ResourceCollectionFile
      */
-    protected function buildClass(): RequestFile
+    protected function buildClass(): ResourceCollectionFile
     {
         $replaceArray = [
             '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
             '$NAMESPACE$' => $this->namespace,
             '$RULES$' => $this->getRules(),
-            '$OA_FIELDS$' => $this->getOAFields(),
         ];
 
         $this->template = str_replace( array_keys($replaceArray), array_values($replaceArray), $this->template );
@@ -54,28 +47,9 @@ class RequestFile extends File
             if($key) {
                 $rules .= PHP_EOL . '            ';
             }
-            if (!in_array($field, $this->ignoredFields)) {
-                $rules .= '\'' . $field . '\' => [\'required\'],';
-            } else {
-                $rules .= '\'' . $field . '\' => [\'sometimes\'],';
-            }
+            $rules .= '\'' . $field . '\' => $this->'. $field .',';
         }
 
         return $rules;
-    }
-    /**
-     * @return string
-     */
-    protected function getOAFields(): string
-    {
-        $fields = '';
-
-        foreach ($this->getFields() as $key => $field) {
-            if (!in_array($field, $this->ignoredFields)) {
-                $fields .= '* @OA\Property( property="' . $field . '", type="'.$this->getFieldType($field).'", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
-            }
-        }
-
-        return $fields;
     }
 }

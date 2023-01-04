@@ -3,10 +3,11 @@
 namespace DKart\CrudMaker\Maker;
 
 use DKart\CrudMaker\Maker\Files\ControllerFile;
-use DKart\CrudMaker\Maker\Files\ManagerFile;
 use DKart\CrudMaker\Maker\Files\ModelFile;
 use DKart\CrudMaker\Maker\Files\RepositoryFile;
 use DKart\CrudMaker\Maker\Files\RequestFile;
+use DKart\CrudMaker\Maker\Files\ResourceCollectionFile;
+use DKart\CrudMaker\Maker\Files\ResourceFile;
 use DKart\CrudMaker\Maker\Files\TestFile;
 use DKart\CrudMaker\Maker\Files\ViewFormFile;
 use DKart\CrudMaker\Maker\Files\ViewListFile;
@@ -46,6 +47,22 @@ class MakerFactory implements MakerFactoryInterface
     public function makeRequest(): mixed
     {
         return App::make(RequestFile::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function makeResource(): mixed
+    {
+        return App::make(ResourceFile::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function makeResourceCollection(): mixed
+    {
+        return App::make(ResourceCollectionFile::class);
     }
 
     /**

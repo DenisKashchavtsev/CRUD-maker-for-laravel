@@ -42,8 +42,8 @@ abstract class File
      */
     public function setSettings($settings): File
     {
-        $this->patch = $settings['path'];
-        $this->namespace = $settings['namespace'] ?? '';
+        $this->patch = $this->patch ?? $settings['path'];
+        $this->namespace = $this->namespace ?? $settings['namespace'] ?? '';
 
         return $this;
     }
@@ -99,7 +99,7 @@ abstract class File
     protected function publish(): void
     {
         if (!file_exists(base_path($this->patch))) {
-            mkdir(base_path($this->patch));
+            mkdir(base_path($this->patch), 0775, true);
         }
 
         file_put_contents(base_path($this->patch) . '/' . $this->getFileName(), $this->template);

@@ -37,13 +37,34 @@ return [
             ],
         ],
 
-        'admin' => [
+        'api' => [
             'controller' => [
-                'path' => 'app/Http/Controllers/Admin',
+                'path' => 'app/Http/Controllers',
                 'namespace' => 'App\Http\Controllers'
             ],
             'model' => [
                 'path' => 'app/Models',
+                'namespace' => 'App\Models'
+            ],
+            'repository' => [
+                'path' => 'app/Repositories',
+                'namespace' => 'App\Repositories'
+            ],
+            'request' => [
+                'path' => 'app/Http/Requests',
+                'namespace' => 'App\Http\Requests'
+            ],
+            'resource' => [
+                'path' => 'app/Http/Resources',
+                'namespace' => 'App\Http\Resources'
+            ],
+            'resourceCollection' => [
+                'path' => 'app/Http/Resources',
+                'namespace' => 'App\Http\Resources'
+            ],
+            'test' => [
+                'path' => 'tests/Feature',
+                'namespace' => 'Tests\Feature'
             ],
         ],
     ],
