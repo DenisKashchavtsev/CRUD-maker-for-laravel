@@ -30,8 +30,7 @@ class PropertyContainer implements PropertyContainerInterface
      */
     function updateProperty($propertyName, $value): void
     {
-        if (!isset($this->propertyContainer[$propertyName]))
-        {
+        if (!isset($this->propertyContainer[$propertyName])) {
             throw new Exception("Property {$propertyName} not found");
         }
 
@@ -45,8 +44,7 @@ class PropertyContainer implements PropertyContainerInterface
      */
     function getProperty($propertyName): mixed
     {
-        if (!isset($this->propertyContainer[$propertyName]))
-        {
+        if (!isset($this->propertyContainer[$propertyName])) {
             throw new Exception("Property {$propertyName} not found");
         }
 

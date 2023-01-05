@@ -6,7 +6,6 @@ use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 use DKart\CrudMaker\Maker\Maker;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 
 class MakeCrud extends Command
 {

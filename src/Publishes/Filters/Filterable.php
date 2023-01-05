@@ -9,12 +9,11 @@ trait Filterable
     /**
      * @var array
      */
-    private array $filtersForQuery = [];
-
+    protected array $filters = [];
     /**
      * @var array
      */
-    protected array $filters = [];
+    private array $filtersForQuery = [];
 
     /**
      * @param $requestFilters
@@ -22,7 +21,7 @@ trait Filterable
      */
     public function addFilters($requestFilters): self
     {
-        if (is_array($requestFilters)){
+        if (is_array($requestFilters)) {
             $this->checkFilters($requestFilters);
         }
 
@@ -35,8 +34,8 @@ trait Filterable
      */
     private function checkFilters($requestFilters): void
     {
-        foreach ($requestFilters as $key => $value){
-            if(in_array($key, $this->filters)) {
+        foreach ($requestFilters as $key => $value) {
+            if (in_array($key, $this->filters)) {
                 $this->filtersForQuery[$key] = $value;
             }
         }
@@ -48,11 +47,11 @@ trait Filterable
      */
     private function applyFiltersToQuery($query): object
     {
-        foreach($this->filtersForQuery as $field => $value) {
+        foreach ($this->filtersForQuery as $field => $value) {
 
             $filterMethod = 'filter' . str_replace('_', '', ucwords($field, '_'));
 
-            if(method_exists($this, $filterMethod)) {
+            if (method_exists($this, $filterMethod)) {
                 $this->$filterMethod($query, $value);
             } else {
                 $query->where($field, $value);

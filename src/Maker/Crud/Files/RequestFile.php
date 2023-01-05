@@ -1,12 +1,12 @@
 <?php
 
-namespace DKart\CrudMaker\Maker\Files;
+namespace DKart\CrudMaker\Maker\Crud\Files;
 
 class RequestFile extends File
 {
-    CONST PREFIX_FILE = 'Request.php';
+    const PREFIX_FILE = 'Request.php';
 
-    CONST FILE_NAME = 'request';
+    const FILE_NAME = 'request';
 
     protected array $ignoredFields = [
         'id',
@@ -27,20 +27,14 @@ class RequestFile extends File
     }
 
     /**
-     * @return RequestFile
+     * @return ModelFile
      */
-    protected function buildClass(): RequestFile
+    protected function buildClass(): File
     {
-        $replaceArray = [
-            '$PASCAL_ENTITY$' => ucfirst($this->propertyContainer->getProperty('entity')),
-            '$NAMESPACE$' => $this->namespace,
-            '$RULES$' => $this->getRules(),
-            '$OA_FIELDS$' => $this->getOAFields(),
-        ];
+        $this->shortcodes->setShortcode('$RULES$', $this->getRules());
+        $this->shortcodes->setShortcode('$OA_FIELDS$', $this->getOAFields());
 
-        $this->template = str_replace( array_keys($replaceArray), array_values($replaceArray), $this->template );
-
-        return $this;
+        return parent::buildClass();
     }
 
     /**
@@ -50,8 +44,8 @@ class RequestFile extends File
     {
         $rules = '';
 
-        foreach ($this->getFields() as $key => $field) {
-            if($key) {
+        foreach ($this->fields->getFields() as $key => $field) {
+            if ($key) {
                 $rules .= PHP_EOL . '            ';
             }
             if (!in_array($field, $this->ignoredFields)) {
@@ -63,6 +57,7 @@ class RequestFile extends File
 
         return $rules;
     }
+
     /**
      * @return string
      */
@@ -70,9 +65,9 @@ class RequestFile extends File
     {
         $fields = '';
 
-        foreach ($this->getFields() as $key => $field) {
+        foreach ($this->fields->getFields() as $key => $field) {
             if (!in_array($field, $this->ignoredFields)) {
-                $fields .= '* @OA\Property( property="' . $field . '", type="'.$this->getFieldType($field).'", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
+                $fields .= '* @OA\Property( property="' . $field . '", type="' . $this->fields->getFieldType($field) . '", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
             }
         }
 

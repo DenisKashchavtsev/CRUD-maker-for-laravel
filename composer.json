@@ -1,26 +1,26 @@
 {
-    "name": "dkart/crud-maker",
-    "description": "crud maker for laravel",
-    "type": "library",
-    "homepage": "https://dkart.pro",
-    "license": "Apache-2.0",
-    "autoload": {
-        "psr-4": {
-            "DKart\\CrudMaker\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "DKart\\CrudMaker\\CrudMakerServiceProvider"
-            ]
-        }
-    },
-    "authors": [
-        {
-            "name": "Kashchavtsev Denis"
-        }
-    ],
-    "minimum-stability": "beta",
-    "require": {}
+  "name": "dkart/crud-maker",
+  "description": "crud maker for laravel",
+  "type": "library",
+  "homepage": "https://dkart.pro",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "DKart\\CrudMaker\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "DKart\\CrudMaker\\CrudMakerServiceProvider"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "name": "Kashchavtsev Denis"
+    }
+  ],
+  "minimum-stability": "beta",
+  "require": {}
 }

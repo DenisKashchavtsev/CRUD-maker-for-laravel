@@ -2,16 +2,16 @@
 
 namespace DKart\CrudMaker\Maker;
 
-use DKart\CrudMaker\Maker\Files\ControllerFile;
-use DKart\CrudMaker\Maker\Files\ModelFile;
-use DKart\CrudMaker\Maker\Files\RepositoryFile;
-use DKart\CrudMaker\Maker\Files\RequestFile;
-use DKart\CrudMaker\Maker\Files\ResourceCollectionFile;
-use DKart\CrudMaker\Maker\Files\ResourceFile;
-use DKart\CrudMaker\Maker\Files\TestFile;
-use DKart\CrudMaker\Maker\Files\ViewFormFile;
-use DKart\CrudMaker\Maker\Files\ViewListFile;
-use DKart\CrudMaker\Maker\Files\ViewShowFile;
+use DKart\CrudMaker\Maker\Crud\Files\ControllerFile;
+use DKart\CrudMaker\Maker\Crud\Files\ModelFile;
+use DKart\CrudMaker\Maker\Crud\Files\RepositoryFile;
+use DKart\CrudMaker\Maker\Crud\Files\RequestFile;
+use DKart\CrudMaker\Maker\Crud\Files\ResourceCollectionFile;
+use DKart\CrudMaker\Maker\Crud\Files\ResourceFile;
+use DKart\CrudMaker\Maker\Crud\Files\TestFile;
+use DKart\CrudMaker\Maker\Crud\Files\ViewFormFile;
+use DKart\CrudMaker\Maker\Crud\Files\ViewListFile;
+use DKart\CrudMaker\Maker\Crud\Files\ViewShowFile;
 use DKart\CrudMaker\Maker\Interfaces\MakerFactoryInterface;
 use Illuminate\Support\Facades\App;
 

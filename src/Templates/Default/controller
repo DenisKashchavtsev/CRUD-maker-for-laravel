@@ -3,7 +3,7 @@
 namespace $NAMESPACE$;
 
 use App\Http\Managers\$PASCAL_ENTITY$Manager;
-use App\Http\Requests\$PASCAL_ENTITY$Request;
+use App\Http\Requests\$PASCAL_ENTITY$\$PASCAL_ENTITY$Request;
 use App\Models\$PASCAL_ENTITY$;
 use App\Repositories\$PASCAL_ENTITY$Repository;
 use Illuminate\Contracts\Foundation\Application;

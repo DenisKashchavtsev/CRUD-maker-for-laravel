@@ -43,8 +43,6 @@ class Maker
      */
     private function getTemplateConfig(): array
     {
-        return config('crudMaker.templates')[
-            strtolower($this->propertyContainer->getProperty('templateName'))
-            ] ?? [];
+        return config('crudMaker.templates')[strtolower($this->propertyContainer->getProperty('templateName'))] ?? [];
     }
 }

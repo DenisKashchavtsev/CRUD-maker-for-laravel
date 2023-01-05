@@ -11,7 +11,7 @@ trait BaseFilters
      */
     private function filterName(object $builder, ?string $data): void
     {
-        if($data) {
+        if ($data) {
             $builder->where('name', 'like', '%' . $data . '%');
         }
     }
