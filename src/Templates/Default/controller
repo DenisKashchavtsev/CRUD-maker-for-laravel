@@ -13,7 +13,7 @@ use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
 
-class $PASCAL_ENTITY_PLURAL$Controller extends Controller
+class $PASCAL_ENTITY$Controller extends Controller
 {
     /**
      * @var $PASCAL_ENTITY$Repository

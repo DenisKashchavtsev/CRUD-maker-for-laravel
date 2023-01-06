@@ -26,11 +26,8 @@ class CrudMakerServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . 'Config/crudMaker.php' => config_path('crudMaker.php'),
-            __DIR__ . 'Publishes/Exceptions/ManagerErrorOnSaveException.php' => base_path('app/Exceptions/ManagerErrorOnSaveException.php'),
-            __DIR__ . 'Publishes/Filters/BaseFilters.php' => base_path('app/Filters/BaseFilters.php'),
-            __DIR__ . 'Publishes/Filters/Filterable.php' => base_path('app/Filters/Filterable.php'),
-            __DIR__ . 'Publishes/Managers/Manager.php' => base_path('app/Http/Managers/Manager.php'),
+            __DIR__ . '/Publishes/Filters/BaseFilters.php' => base_path('app/Filters/BaseFilters.php'),
+            __DIR__ . '/Publishes/Filters/Filterable.php' => base_path('app/Filters/Filterable.php'),
         ], 'crudMaker');
 
         $this->app->bind(MakerFactoryInterface::class, MakerFactory::class);

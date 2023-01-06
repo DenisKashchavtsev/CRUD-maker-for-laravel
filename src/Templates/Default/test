@@ -6,7 +6,7 @@ use App\Models\$PASCAL_ENTITY$;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class $PASCAL_ENTITY_PLURAL$Test extends TestCase
+class $PASCAL_ENTITY$Test extends TestCase
 {
     const URL = '$SNAKE_ENTITY$';
 
