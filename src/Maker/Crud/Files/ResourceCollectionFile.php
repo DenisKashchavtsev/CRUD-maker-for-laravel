@@ -19,31 +19,4 @@ class ResourceCollectionFile extends File
 
         return parent::setSettings($settings);
     }
-
-    /**
-     * @return ModelFile
-     */
-    protected function buildClass(): File
-    {
-        $this->shortcodes->setShortcode('$RULES$', $this->getRules());
-
-        return parent::buildClass();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getRules(): string
-    {
-        $rules = '';
-
-        foreach ($this->fields->getFields() as $key => $field) {
-            if ($key) {
-                $rules .= PHP_EOL . '            ';
-            }
-            $rules .= '\'' . $field . '\' => $this->' . $field . ',';
-        }
-
-        return $rules;
-    }
 }

@@ -30,8 +30,7 @@ class $PASCAL_ENTITY$Request extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            $RULES$
+        return [$RULES$
         ];
     }
 }

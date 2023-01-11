@@ -8,12 +8,6 @@ class RequestFile extends File
 
     const FILE_NAME = 'request';
 
-    protected array $ignoredFields = [
-        'id',
-        'created_at',
-        'updated_at',
-    ];
-
     /**
      * @param $settings
      * @return File
@@ -45,14 +39,8 @@ class RequestFile extends File
         $rules = '';
 
         foreach ($this->fields->getFields() as $key => $field) {
-            if ($key) {
-                $rules .= PHP_EOL . '            ';
-            }
-            if (!in_array($field, $this->ignoredFields)) {
-                $rules .= '\'' . $field . '\' => [\'required\'],';
-            } else {
-                $rules .= '\'' . $field . '\' => [\'sometimes\'],';
-            }
+            $rules .= ($key ? PHP_EOL . '            ' : '')
+                . '\'' . $field . '\' => [\'required\'],';
         }
 
         return $rules;
@@ -65,10 +53,8 @@ class RequestFile extends File
     {
         $fields = '';
 
-        foreach ($this->fields->getFields() as $key => $field) {
-            if (!in_array($field, $this->ignoredFields)) {
-                $fields .= '* @OA\Property( property="' . $field . '", type="' . $this->fields->getFieldType($field) . '", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
-            }
+        foreach ($this->fields->getFields() as $field) {
+            $fields .= '* @OA\Property( property="' . $field . '", type="' . $this->fields->getFieldType($field) . '", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
         }
 
         return $fields;

@@ -14,11 +14,7 @@ class $PASCAL_ENTITY$Test extends TestCase
 
     public function test_list_$SNAKE_ENTITY$()
     {
-        $PASCAL_ENTITY$::create([
-            'name' => '$PASCAL_ENTITY$ test',
-            'price' => 10,
-            'status' => 1,
-        ]);
+        $PASCAL_ENTITY$::factory()->create();
 
         $this->getJson(self::URL)
             ->assertJsonStructure([
@@ -30,85 +26,43 @@ class $PASCAL_ENTITY$Test extends TestCase
 
     public function test_show_$SNAKE_ENTITY$()
     {
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
-            'name' => '$PASCAL_ENTITY$ test',
-            'price' => 10,
-            'status' => 1,
-        ]);
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::factory()->create();
 
         $this->getJson(self::URL . '/' . $$SNAKE_ENTITY$->id)
             ->assertJsonStructure([
                 'data' => [
-                    'id',
-                    'name',
-                    'price',
-                    'status',
-                    'created_at',
-                    'updated_at',
+                    $JSON_STRUCTURE$
                 ]
         ])->assertStatus(200);
     }
 
     public function test_create_$SNAKE_ENTITY$()
     {
-        $this->postJson(self::URL,[
-            'name' => '$PASCAL_ENTITY$ test',
-            'price' => 10,
-            'status' => 1,
+        $this->postJson(self::URL,[$FIELDS$
         ])->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'price',
-                    'status',
-                    'created_at',
-                    'updated_at',
-                ]
-            ])->assertStatus(201);
-
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test')->first();
-        $this->assertNotNull($$SNAKE_ENTITY$);
+            'data' => [
+                $JSON_STRUCTURE$
+            ]
+        ])->assertStatus(201);
     }
 
     public function test_edit_$SNAKE_ENTITY$()
     {
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
-            'name' => '$PASCAL_ENTITY$ test',
-            'price' => 10,
-            'status' => 1,
-        ]);
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::factory()->create();
 
-        $this->putJson(self::URL . '/' . $$SNAKE_ENTITY$->id,[
-            'name' => '$PASCAL_ENTITY$ test updated',
-            'price' => 10,
-            'status' => 1,
+        $this->putJson(self::URL . '/' . $$SNAKE_ENTITY$->id,[$FIELDS$
         ])->assertJsonStructure([
             'data' => [
-                'id',
-                'name',
-                'price',
-                'status',
-                'created_at',
-                'updated_at',
+                $JSON_STRUCTURE$
             ]
         ])->assertStatus(200);
-
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test updated')->first();
-        $this->assertNotNull($$SNAKE_ENTITY$);
     }
 
     public function test_delete_$SNAKE_ENTITY$()
     {
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::create([
-            'name' => '$PASCAL_ENTITY$ test',
-            'price' => 10,
-            'status' => 1,
-        ]);
+        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::factory()->create();
 
         $this->deleteJson(self::URL . '/' . $$SNAKE_ENTITY$->id)
             ->assertStatus(204);
-
-        $$SNAKE_ENTITY$ = $PASCAL_ENTITY$::where('name', '$PASCAL_ENTITY$ test')->first();
-        $this->assertNull($$SNAKE_ENTITY$);
     }
 }

@@ -37,11 +37,9 @@ class ResourceFile extends File
     {
         $rules = '';
 
-        foreach ($this->fields->getFields() as $key => $field) {
-            if ($key) {
-                $rules .= PHP_EOL . '            ';
-            }
-            $rules .= '\'' . $field . '\' => $this->' . $field . ',';
+        foreach ($this->fields->getFields(false) as $key => $field) {
+            $rules .= ($key ? PHP_EOL . '            ' : '') . '\''
+                . $field . '\' => $this->' . $field . ',';
         }
 
         return $rules;

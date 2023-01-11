@@ -35,6 +35,10 @@ return [
                 'path' => 'tests/Feature',
                 'namespace' => 'Tests\Feature'
             ],
+            'factory' => [
+                'path' => 'database/factories',
+                'namespace' => 'Database\Factories'
+            ],
         ],
 
         'api' => [
@@ -65,6 +69,10 @@ return [
             'test' => [
                 'path' => 'tests/Feature',
                 'namespace' => 'Tests\Feature'
+            ],
+            'factory' => [
+                'path' => 'database/factories',
+                'namespace' => 'Database\Factories'
             ],
         ],
     ],
