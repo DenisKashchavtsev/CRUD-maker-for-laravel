@@ -57,6 +57,9 @@ app
 │   ├── Entity.php
 └── Repositories
     └── EntityRepository.php
+database
+└── factories
+    └── EntityFactory.php
 tests
 └── Feature
     └── EntityTest.php
@@ -76,6 +79,9 @@ app
 │   └── Entity.php
 └── Repositories
     └── EntityRepository.php
+database
+└── factories
+    └── EntityFactory.php
 resources
 └── views
     └── entity
@@ -83,7 +89,6 @@ resources
         ├── list.blade.php
         └── show.blade.php
 tests
-├── CreatesApplication.php
 └── Feature
     └── EntityTest.php
 
