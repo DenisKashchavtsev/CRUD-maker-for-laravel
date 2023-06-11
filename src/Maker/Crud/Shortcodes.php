@@ -6,29 +6,13 @@ use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
 
 class Shortcodes
 {
-    /**
-     * @var array
-     */
     private array $shortcodes;
 
-    /**
-     * @var PropertyContainerInterface
-     */
-    private PropertyContainerInterface $propertyContainer;
-
-    /**
-     * @param PropertyContainerInterface $propertyContainer
-     */
-    public function __construct(PropertyContainerInterface $propertyContainer)
+    public function __construct(private PropertyContainerInterface $propertyContainer)
     {
-        $this->propertyContainer = $propertyContainer;
-
         $this->setDefaultShortcodes();
     }
 
-    /**
-     * @return void
-     */
     private function setDefaultShortcodes(): void
     {
         $this->shortcodes = [
@@ -40,27 +24,16 @@ class Shortcodes
         ];
     }
 
-    /**
-     * @param $key
-     * @param $value
-     * @return void
-     */
     public function setShortcode($key, $value): void
     {
         $this->shortcodes[$key] = $value;
     }
 
-    /**
-     * @return array
-     */
     public function getShortcodesKeys(): array
     {
         return array_keys($this->shortcodes);
     }
 
-    /**
-     * @return array
-     */
     public function getShortcodesValues(): array
     {
         return array_values($this->shortcodes);

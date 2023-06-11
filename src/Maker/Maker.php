@@ -8,22 +8,10 @@ use Illuminate\Support\Facades\App;
 
 class Maker
 {
-    /**
-     * @var PropertyContainerInterface
-     */
-    private PropertyContainerInterface $propertyContainer;
-
-    /**
-     * @param PropertyContainerInterface $propertyContainer
-     */
-    public function __construct(PropertyContainerInterface $propertyContainer)
+    public function __construct(private PropertyContainerInterface $propertyContainer)
     {
-        $this->propertyContainer = $propertyContainer;
     }
 
-    /**
-     * @return void
-     */
     public function make(): void
     {
         $builderFactory = App::make(MakerFactoryInterface::class);
@@ -38,9 +26,6 @@ class Maker
         }
     }
 
-    /**
-     * @return array
-     */
     private function getTemplateConfig(): array
     {
         return config('crudMaker.templates')[strtolower($this->propertyContainer->getProperty('templateName'))] ?? [];

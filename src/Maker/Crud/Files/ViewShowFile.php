@@ -8,10 +8,6 @@ class ViewShowFile extends File
 
     const FILE_NAME = 'viewShow';
 
-    /**
-     * @param $settings
-     * @return File
-     */
     public function setSettings($settings): File
     {
         $this->patch = $settings['path'] . '/' . lcfirst($this->propertyContainer->getProperty('entity'));
@@ -19,17 +15,11 @@ class ViewShowFile extends File
         return $this;
     }
 
-    /**
-     * @return string
-     */
     protected function getFileName(): string
     {
         return 'show' . static::PREFIX_FILE;
     }
 
-    /**
-     * @return ModelFile
-     */
     protected function buildClass(): File
     {
         $this->shortcodes->setShortcode('$FIELDS$', $this->getFieldsTemplate());
@@ -37,9 +27,6 @@ class ViewShowFile extends File
         return parent::buildClass();
     }
 
-    /**
-     * @return string
-     */
     protected function getFieldsTemplate(): string
     {
         $fields = '';

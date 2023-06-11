@@ -6,19 +6,10 @@ trait Filterable
 {
     use BaseFilters;
 
-    /**
-     * @var array
-     */
     protected array $filters = [];
-    /**
-     * @var array
-     */
+
     private array $filtersForQuery = [];
 
-    /**
-     * @param $requestFilters
-     * @return self
-     */
     public function addFilters($requestFilters): self
     {
         if (is_array($requestFilters)) {
@@ -28,10 +19,6 @@ trait Filterable
         return $this;
     }
 
-    /**
-     * @param $requestFilters
-     * @return void
-     */
     private function checkFilters($requestFilters): void
     {
         foreach ($requestFilters as $key => $value) {
@@ -41,10 +28,6 @@ trait Filterable
         }
     }
 
-    /**
-     * @param $query
-     * @return object
-     */
     private function applyFiltersToQuery($query): object
     {
         foreach ($this->filtersForQuery as $field => $value) {

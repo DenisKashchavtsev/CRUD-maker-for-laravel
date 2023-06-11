@@ -8,9 +8,6 @@ class FactoryFile extends File
 
     const FILE_NAME = 'factory';
 
-    /**
-     * @return ModelFile
-     */
     protected function buildClass(): File
     {
         $this->shortcodes->setShortcode('$DEFINITION$', $this->getDefinition());
@@ -18,9 +15,6 @@ class FactoryFile extends File
         return parent::buildClass();
     }
 
-    /**
-     * @return string
-     */
     protected function getDefinition(): string
     {
         $fields = '';

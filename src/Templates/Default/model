@@ -9,9 +9,6 @@ class $PASCAL_ENTITY$ extends Model
 {
     use HasFactory;
 
-    /**
-     * @var array
-     */
     protected $fillable = [
         $FILLABLE$
     ];

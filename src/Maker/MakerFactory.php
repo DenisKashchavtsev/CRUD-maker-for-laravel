@@ -19,97 +19,61 @@ use Illuminate\Support\Facades\App;
 
 class MakerFactory implements MakerFactoryInterface
 {
-    /**
-     * @return mixed
-     */
     public function makeController(): mixed
     {
         return App::make(ControllerFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeModel(): mixed
     {
         return App::make(ModelFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeRepository(): mixed
     {
         return App::make(RepositoryFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeRequest(): mixed
     {
         return App::make(RequestFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeResource(): mixed
     {
         return App::make(ResourceFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeResourceCollection(): mixed
     {
         return App::make(ResourceCollectionFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeViewList(): mixed
     {
         return App::make(ViewListFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeViewForm(): mixed
     {
         return App::make(ViewFormFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeViewShow(): mixed
     {
         return App::make(ViewShowFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeTest(): mixed
     {
         return App::make(TestFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeFactory(): mixed
     {
         return App::make(FactoryFile::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function makeService(): mixed
     {
         return App::make(ServiceFile::class);

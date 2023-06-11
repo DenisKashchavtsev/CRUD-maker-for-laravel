@@ -8,10 +8,6 @@ class RequestFile extends File
 
     const FILE_NAME = 'request';
 
-    /**
-     * @param $settings
-     * @return File
-     */
     public function setSettings($settings): File
     {
         $this->patch = $settings['path'] . '/' . ucfirst($this->propertyContainer->getProperty('entity'));

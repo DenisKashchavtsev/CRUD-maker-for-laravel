@@ -23,9 +23,6 @@ class MakeCrud extends Command
      */
     protected $description = 'Create a new CRUD';
 
-    /**
-     * @var array
-     */
     private array $data;
 
     /**

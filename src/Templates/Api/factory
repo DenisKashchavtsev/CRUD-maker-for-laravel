@@ -6,21 +6,10 @@ use App\Models\$PASCAL_ENTITY$;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-/**
- * @extends Factory<$PASCAL_ENTITY$>
- */
 class $PASCAL_ENTITY$Factory extends Factory
 {
-    /**
-     * @var string
-     */
     protected $model = $PASCAL_ENTITY$::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [$DEFINITION$

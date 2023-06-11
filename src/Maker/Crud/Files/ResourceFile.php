@@ -8,10 +8,6 @@ class ResourceFile extends File
 
     const FILE_NAME = 'resource';
 
-    /**
-     * @param $settings
-     * @return File
-     */
     public function setSettings($settings): File
     {
         $this->patch = $settings['path'] . '/' . ucfirst($this->propertyContainer->getProperty('entity'));
@@ -20,9 +16,6 @@ class ResourceFile extends File
         return parent::setSettings($settings);
     }
 
-    /**
-     * @return ModelFile
-     */
     protected function buildClass(): File
     {
         $this->shortcodes->setShortcode('$RULES$', $this->getRules());
@@ -30,9 +23,6 @@ class ResourceFile extends File
         return parent::buildClass();
     }
 
-    /**
-     * @return string
-     */
     protected function getRules(): string
     {
         $rules = '';
