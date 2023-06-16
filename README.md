@@ -55,8 +55,10 @@ app
 │           └── EntityResource.php
 ├── Models
 │   ├── Entity.php
-└── Repositories
-    └── EntityRepository.php
+├── Repositories
+│   └── EntityRepository.php
+└── Services
+    └── EntityService.php
 database
 └── factories
     └── EntityFactory.php
@@ -77,8 +79,10 @@ app
 │           └── EntityRequest.php
 ├── Models
 │   └── Entity.php
-└── Repositories
-    └── EntityRepository.php
+├── Repositories
+│   └── EntityRepository.php
+└── Services
+    └── EntityService.php
 database
 └── factories
     └── EntityFactory.php
