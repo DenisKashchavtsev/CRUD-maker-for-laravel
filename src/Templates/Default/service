@@ -1,0 +1,37 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Repositories\$PASCAL_ENTITY$Repository;
+
+class $PASCAL_ENTITY$Service
+{
+    public function __construct(private $PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository)
+    {
+    }
+
+    public function getAll(): mixed
+    {
+        return $this->$SNAKE_ENTITY$Repository->getAll();
+    }
+
+    public function show(int $id): mixed
+    {
+         return $this->$SNAKE_ENTITY$Repository->getById($id);
+    }
+
+    public function store(array $data): mixed
+    {
+        return $this->$SNAKE_ENTITY$Repository->create($data);
+    }
+
+    public function update(array $data, int $id): mixed
+    {
+        return $this->$SNAKE_ENTITY$Repository->update($data, $id);
+    }
+
+    public function destroy(int $id): mixed
+    {
+        return $this->$SNAKE_ENTITY$Repository->delete($id);
+    }
+}

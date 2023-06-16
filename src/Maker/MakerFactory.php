@@ -9,6 +9,7 @@ use DKart\CrudMaker\Maker\Crud\Files\RepositoryFile;
 use DKart\CrudMaker\Maker\Crud\Files\RequestFile;
 use DKart\CrudMaker\Maker\Crud\Files\ResourceCollectionFile;
 use DKart\CrudMaker\Maker\Crud\Files\ResourceFile;
+use DKart\CrudMaker\Maker\Crud\Files\ServiceFile;
 use DKart\CrudMaker\Maker\Crud\Files\TestFile;
 use DKart\CrudMaker\Maker\Crud\Files\ViewFormFile;
 use DKart\CrudMaker\Maker\Crud\Files\ViewListFile;
@@ -104,5 +105,13 @@ class MakerFactory implements MakerFactoryInterface
     public function makeFactory(): mixed
     {
         return App::make(FactoryFile::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function makeService(): mixed
+    {
+        return App::make(ServiceFile::class);
     }
 }

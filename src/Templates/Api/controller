@@ -5,24 +5,14 @@ namespace $NAMESPACE$;
 use App\Http\Requests\$PASCAL_ENTITY$\$PASCAL_ENTITY$Request;
 use App\Http\Resources\$PASCAL_ENTITY$\$PASCAL_ENTITY$Collection;
 use App\Http\Resources\$PASCAL_ENTITY$\$PASCAL_ENTITY$Resource;
-use App\Models\$PASCAL_ENTITY$;
-use App\Repositories\$PASCAL_ENTITY$Repository;
+use App\Services\$PASCAL_ENTITY$Service;
 use Illuminate\Http\Response;
+use OpenApi\Annotations as OA;
 
 class $PASCAL_ENTITY$Controller extends Controller
 {
-    /**
-     * @var $PASCAL_ENTITY$Repository
-     */
-    private $PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository;
-
-    /**
-     * $PASCAL_ENTITY$Controller constructor.
-     * @param $PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository
-     */
-    public function __construct($PASCAL_ENTITY$Repository $$SNAKE_ENTITY$Repository)
+    public function __construct(private $PASCAL_ENTITY$Service $$SNAKE_ENTITY$Service)
     {
-        $this->$SNAKE_ENTITY$Repository = $$SNAKE_ENTITY$Repository;
     }
 
     /**
@@ -38,7 +28,7 @@ class $PASCAL_ENTITY$Controller extends Controller
      */
     public function index(): $PASCAL_ENTITY$Collection
     {
-        return new $PASCAL_ENTITY$Collection($this->$SNAKE_ENTITY$Repository->getAll());
+        return new $PASCAL_ENTITY$Collection($this->$SNAKE_ENTITY$Service->getAll());
     }
 
     /**
@@ -54,7 +44,7 @@ class $PASCAL_ENTITY$Controller extends Controller
      */
     public function show(int $id): $PASCAL_ENTITY$Resource
     {
-        return new $PASCAL_ENTITY$Resource($this->$SNAKE_ENTITY$Repository->getById($id));
+        return new $PASCAL_ENTITY$Resource($this->$SNAKE_ENTITY$Service->show($id));
     }
 
     /**
@@ -72,7 +62,7 @@ class $PASCAL_ENTITY$Controller extends Controller
      */
     public function store($PASCAL_ENTITY$Request $request): $PASCAL_ENTITY$Resource
     {
-        return new $PASCAL_ENTITY$Resource($PASCAL_ENTITY$::create($request->validated()));
+        return new $PASCAL_ENTITY$Resource($this->$SNAKE_ENTITY$Service->store($request->validated()));
     }
 
     /**
@@ -90,9 +80,9 @@ class $PASCAL_ENTITY$Controller extends Controller
      *      @OA\Response(response=422, description="Unprocessable Content", @OA\JsonContent())
      * )
      */
-    public function update($PASCAL_ENTITY$Request $request, $PASCAL_ENTITY$ $$SNAKE_ENTITY$): $PASCAL_ENTITY$Resource
+    public function update($PASCAL_ENTITY$Request $request, int $id): $PASCAL_ENTITY$Resource
     {
-        return new $PASCAL_ENTITY$Resource(tap($$SNAKE_ENTITY$)->update($request->validated()));
+        return new $PASCAL_ENTITY$Resource($this->$SNAKE_ENTITY$Service->update($request->validated(), $id));
     }
 
     /**
@@ -106,9 +96,9 @@ class $PASCAL_ENTITY$Controller extends Controller
      *      @OA\Response(response=401, description="Unauthenticated", @OA\JsonContent())
      * )
      */
-    public function destroy($PASCAL_ENTITY$ $$SNAKE_ENTITY$): Response
+    public function destroy(int $id): Response
     {
-        $$SNAKE_ENTITY$->delete();
+        $this->$SNAKE_ENTITY$Service->destroy($id);
 
         return response()->noContent();
     }

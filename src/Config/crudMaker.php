@@ -39,6 +39,10 @@ return [
                 'path' => 'database/factories',
                 'namespace' => 'Database\Factories'
             ],
+            'service' => [
+                'path' => 'app/Services',
+                'namespace' => 'App\Services'
+            ],
         ],
 
         'api' => [
@@ -73,6 +77,10 @@ return [
             'factory' => [
                 'path' => 'database/factories',
                 'namespace' => 'Database\Factories'
+            ],
+            'service' => [
+                'path' => 'app/Services',
+                'namespace' => 'App\Services'
             ],
         ],
     ],

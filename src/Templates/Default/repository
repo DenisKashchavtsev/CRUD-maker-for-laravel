@@ -7,40 +7,39 @@ use App\Filters\Filterable;
 
 class $PASCAL_ENTITY$Repository
 {
-    /**
-     * Trait for filtering by get parameters
-     */
     use Filterable;
 
-    /**
-     * @var string
-     */
     private string $model;
 
-    /**
-     * ExperiencesRepository constructor.
-     */
     public function __construct()
     {
         $this->model = $PASCAL_ENTITY$::class;
 
-        $this->filters = [ ];
+        $this->filters = [];
     }
 
-    /**
-     * @return mixed
-     */
     public function getAll(): mixed
     {
         return $this->applyFiltersToQuery($this->model::query())->paginate();
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function getById($id): mixed
+    public function getById(int $id): mixed
     {
         return $this->model::find($id);
+    }
+
+    public function create(array $data): mixed
+    {
+        return $this->model::create($data);
+    }
+
+    public function update(array $data, int $id): mixed
+    {
+        return tap($this->model::whereId($id)->first())->update($data);
+    }
+
+    public function delete(int $id): mixed
+    {
+        return $this->model::whereId($id)->delete();
     }
 }
