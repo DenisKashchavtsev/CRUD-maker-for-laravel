@@ -21,7 +21,8 @@ class TestFile extends File
         $fields = '';
 
         foreach ($this->fields->getFields() as $key => $field) {
-            if ($this->fields->getFieldType($field) === 'string') {
+            if ($this->fields->getFieldType($field) === 'string'
+                || $this->fields->getFieldType($field) === 'varchar') {
                 $fields .= ($key ? PHP_EOL . '            ' : '')
                     . '\'' . $field . '\' => \'' . ucfirst($field) . '\',';
             }
