@@ -2,16 +2,16 @@
 
 namespace $NAMESPACE$;
 
-use App\Http\Requests\$PASCAL_ENTITY$\$PASCAL_ENTITY$Request;
-use App\Http\Resources\$PASCAL_ENTITY$\$PASCAL_ENTITY$Collection;
-use App\Http\Resources\$PASCAL_ENTITY$\$PASCAL_ENTITY$Resource;
-use App\Services\$PASCAL_ENTITY$Service;
+use $REQUEST_NAMESPACE$\$PASCAL_ENTITY$\$PASCAL_ENTITY$Request;
+use $RESOURCE_NAMESPACE$\$PASCAL_ENTITY$\$PASCAL_ENTITY$Collection;
+use $RESOURCE_NAMESPACE$\$PASCAL_ENTITY$\$PASCAL_ENTITY$Resource;
+use $SERVICE_NAMESPACE$\$PASCAL_ENTITY$Service;
 use Illuminate\Http\Response;
-use OpenApi\Annotations as OA;
+use App\Http\Controllers\Controller;
 
 class $PASCAL_ENTITY$Controller extends Controller
 {
-    public function __construct(private $PASCAL_ENTITY$Service $$SNAKE_ENTITY$Service)
+    public function __construct(private readonly $PASCAL_ENTITY$Service $$SNAKE_ENTITY$Service)
     {
     }
 

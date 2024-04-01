@@ -5,12 +5,14 @@ namespace DKart\CrudMaker\Maker\Crud\Files;
 use DKart\CrudMaker\Maker\Crud\Fields;
 use DKart\CrudMaker\Maker\Crud\Shortcodes;
 use DKart\CrudMaker\Maker\Interfaces\PropertyContainerInterface;
+use JetBrains\PhpStorm\NoReturn;
 
 abstract class File
 {
     protected string $template;
     protected string $patch;
     protected string $namespace;
+    private array $settings;
 
     public function __construct(protected PropertyContainerInterface $propertyContainer,
                                 protected Fields                     $fields,
@@ -50,7 +52,7 @@ abstract class File
 
     protected function buildClass(): File
     {
-        $this->shortcodes->setShortcode('$NAMESPACE$', $this->namespace ?? '');
+        $this->setNamespaces();
 
         $this->template = str_replace(
             $this->shortcodes->getShortcodesKeys(),
@@ -59,6 +61,18 @@ abstract class File
         );
 
         return $this;
+    }
+
+    private function setNamespaces(): void
+    {
+        $this->shortcodes->setShortcode('$NAMESPACE$', $this->namespace ?? '');
+
+        $files = config('crudMaker.templates')
+        [strtolower($this->propertyContainer->getProperty('templateName'))];
+
+        foreach ($files as $file => $data) {
+            $this->shortcodes->setShortcode('$' . strtoupper($file) .'_NAMESPACE$', $data['namespace'] ?? '');
+        }
     }
 
     protected function loadTemplate(): static

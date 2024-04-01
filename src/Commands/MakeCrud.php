@@ -44,7 +44,7 @@ class MakeCrud extends Command
         $entityPlural = $this->ask('Entity plural:', 'Products');
         $propertyContainer->setProperty('entityPlural', $entityPlural);
 
-        $templateName = $this->ask('Template (Api or Default) [Api]:', 'Api');
+        $templateName = $this->ask('Template (Api or Default):', 'Api');
         $propertyContainer->setProperty('templateName', $templateName);
 
         App::make(Maker::class)->make();
