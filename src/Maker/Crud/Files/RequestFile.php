@@ -23,6 +23,7 @@ class RequestFile extends File
     {
         $this->shortcodes->setShortcode('$RULES$', $this->getRules());
         $this->shortcodes->setShortcode('$OA_FIELDS$', $this->getOAFields());
+        $this->shortcodes->setShortcode('$REQUIRED$', $this->getRequiredFields());
 
         return parent::buildClass();
     }
@@ -51,6 +52,20 @@ class RequestFile extends File
 
         foreach ($this->fields->getFields() as $field) {
             $fields .= '* @OA\Property( property="' . $field . '", type="' . $this->fields->getFieldType($field) . '", title="' . ucfirst($field) . '", example="' . ucfirst($field) . '"),' . PHP_EOL;
+        }
+
+        return $fields;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRequiredFields(): string
+    {
+        $fields = '';
+
+        foreach ($this->fields->getFields() as $key => $field) {
+            $fields .= (!empty($fields) ? ', ': '') . '"' . $field . '"';
         }
 
         return $fields;

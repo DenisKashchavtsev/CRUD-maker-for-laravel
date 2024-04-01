@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class $PASCAL_ENTITY$Test extends TestCase
 {
-    const URL = '$SNAKE_ENTITY$';
+    const URL = '$SNAKE_ENTITY_PLURAL$';
 
     use RefreshDatabase;
 

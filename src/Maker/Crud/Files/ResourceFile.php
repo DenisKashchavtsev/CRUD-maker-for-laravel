@@ -18,12 +18,12 @@ class ResourceFile extends File
 
     protected function buildClass(): File
     {
-        $this->shortcodes->setShortcode('$RULES$', $this->getRules());
+        $this->shortcodes->setShortcode('$FIELDS$', $this->getFields());
 
         return parent::buildClass();
     }
 
-    protected function getRules(): string
+    protected function getFields(): string
     {
         $rules = '';
 

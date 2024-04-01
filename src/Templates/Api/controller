@@ -23,7 +23,6 @@ class $PASCAL_ENTITY$Controller extends Controller
      *      summary="Show $SNAKE_ENTITY_PLURAL$",
      *      @OA\Parameter(name="sort", in="query", required=false),
      *      @OA\Response(response=200, description="Successful operation", @OA\JsonContent()),
-     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent()),
      * )
      */
     public function index(): $PASCAL_ENTITY$Collection
@@ -39,7 +38,6 @@ class $PASCAL_ENTITY$Controller extends Controller
      *      summary="Show $SNAKE_ENTITY$",
      *      @OA\Parameter(name="id", in="path", required=true),
      *      @OA\Response(response=200, description="Successful operation", @OA\JsonContent()),
-     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent()),
      * )
      */
     public function show(int $id): $PASCAL_ENTITY$Resource
@@ -57,7 +55,6 @@ class $PASCAL_ENTITY$Controller extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/$PASCAL_ENTITY$Request")
      *      ),
      *      @OA\Response(response=201, description="Successful operation", @OA\JsonContent()),
-     *      @OA\Response(response=422, description="Unprocessable Content", @OA\JsonContent())
      * )
      */
     public function store($PASCAL_ENTITY$Request $request): $PASCAL_ENTITY$Resource
@@ -76,8 +73,6 @@ class $PASCAL_ENTITY$Controller extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/$PASCAL_ENTITY$Request")
      *      ),
      *      @OA\Response(response=200, description="Successful operation", @OA\JsonContent()),
-     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent()),
-     *      @OA\Response(response=422, description="Unprocessable Content", @OA\JsonContent())
      * )
      */
     public function update($PASCAL_ENTITY$Request $request, int $id): $PASCAL_ENTITY$Resource
@@ -93,7 +88,6 @@ class $PASCAL_ENTITY$Controller extends Controller
      *      summary="Delete existing $SNAKE_ENTITY$",
      *      @OA\Parameter(name="id", in="path", required=true),
      *      @OA\Response(response=204, description="No Content", @OA\JsonContent()),
-     *      @OA\Response(response=401, description="Unauthenticated", @OA\JsonContent())
      * )
      */
     public function destroy(int $id): Response
